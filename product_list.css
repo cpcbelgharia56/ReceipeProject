@@ -1,0 +1,39 @@
+.item{
+    width: 22%;
+    box-shadow: 5px 10px 10px grey;
+    margin: 1%;
+    padding: 5px;
+    float: left;
+}
+
+.item img{
+    width: 100%;
+}
+
+.item h3{
+    text-align: center;
+}
+
+.item h4{
+    text-align: center;
+}
+
+.item .btn-box button{
+    width: 45%;
+    margin: 1%;
+    padding: 10px;
+    background-color: green;
+    color: white;
+}
+
+@media screen and (max-width: 800px) {
+   .item{
+    width: 44%;
+   }
+}
+
+@media screen and (max-width: 500px) {
+    .item{
+     width: 92%;
+    }
+ }

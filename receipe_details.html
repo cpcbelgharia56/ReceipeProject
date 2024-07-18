@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="getDetails()">
+    <h2>Receipe Details</h2>
+
+    <img src="" alt="" width="20%" id="image">
+
+    <h4>Ingredients</h4>
+    <ol id="ingredients"></ol>
+
+    <br>
+    <hr>
+
+    <h4>Instructions</h4>
+    <ol id="instructions"></ol>
+
+    <script>
+        async function getDetails()
+        {
+            var response = await fetch(`https://dummyjson.com/recipes`)
+            var data = await response.json()
+
+            var recipes = data.recipes;
+
+            var index = localStorage.getItem('selectedIndex');
+
+            document.getElementById("image").src = recipes[index].image;
+
+            var allingredients = recipes[index].ingredients;
+
+            var temp = '';
+            for(i=0; i<allingredients.length; i++)
+            {
+                temp += "<li>"+ allingredients[i] + "</li>";
+            }
+
+            document.getElementById('ingredients').innerHTML = temp;
+
+            var allinstructions = recipes[index].instructions;
+
+            temp = '';
+            for(i=0; i<allinstructions.length; i++)
+            {
+                temp += "<li>"+ allinstructions[i] + "</li>";
+            }
+
+            document.getElementById('instructions').innerHTML = temp;
+        }
+    </script>
+</body>
+</html>
