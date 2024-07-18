@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="product_list.css">
+</head>
+<body onload="getAllProducts()">
+    <h2>List of All Products :</h2>
+
+    <div id="result"></div>
+
+    <script>
+        async function getAllProducts()
+        {
+            var response = await fetch(`https://dummyjson.com/recipes`)
+            var data = await response.json()
+
+            var recipes = data.recipes;
+
+            var temp = "";
+            for(i=0; i<recipes.length; i++)
+            {
+                temp += '<div class="item">';
+                    temp += '<img src="'+recipes[i].image+'">';
+                    temp += '<h3>'+recipes[i].name+'</h3>';
+                    temp += '<h4>$'+recipes[i].cookTimeMinutes+'</h4>';
+                    temp += '<div class="btn-box">';
+                        temp += '<button onclick="details('+i+')">View Details</button>';
+                    temp += '</div>';
+                temp += '</div>';
+            }
+
+            document.getElementById('result').innerHTML = temp;
+        }
+
+        function details(i)
+        {
+            localStorage.setItem('selectedIndex', i);
+            window.location.href = 'receipe_details.html';
+        }
+    </script>
+</body>
+</html>
